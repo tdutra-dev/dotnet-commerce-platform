@@ -30,9 +30,19 @@ Applicazione CRUD didattica per prepararsi a colloqui .NET: Customers, Products 
 - `src/Commerce.Api/Services` — service interfaces and implementations
 - `src/Commerce.Api/Dtos` — immutable API request/response records
 - `src/Commerce.Api/Controllers/Api` — REST controllers
-- `src/Commerce.Api/Controllers/Mvc` and `Views` — Customer Razor pages
+- `src/Commerce.Api/Controllers/Mvc` and `Views` — frontend MVC Razor (`.cshtml`)
 - `src/Commerce.Api/Middleware` — global ProblemDetails exception handling
+- `src/Commerce.Blazor` — frontend Blazor alternativo che consuma la API
+- `src/Commerce.React` — frontend React alternativo (Vite + TypeScript) che consuma la API
 - `tests/Commerce.Api.Tests` — xUnit and SQLite tests
+
+## Frontend alternatives
+
+Il repository include tre opzioni UI alternative:
+
+- MVC Razor (`.cshtml`) integrato nell'API: `http://localhost:8080/Customers`
+- Blazor Server: `http://localhost:8081`
+- React (Vite) servito con nginx: `http://localhost:8082`
 
 ## Run with Docker
 
@@ -45,6 +55,8 @@ docker compose up --build
 API: `http://localhost:8080`
 MVC: `http://localhost:8080/Customers`
 OpenAPI document: `http://localhost:8080/openapi/v1.json`
+Blazor frontend: `http://localhost:8081`
+React frontend: `http://localhost:8082`
 
 ## Run locally
 
@@ -54,6 +66,22 @@ Start SQL Server using Docker and run the API:
 docker compose up db -d
 dotnet run --project src/Commerce.Api
 ```
+
+Per usare anche Blazor in locale:
+
+```bash
+dotnet run --project src/Commerce.Blazor
+```
+
+Per usare React in locale serve Node.js installato:
+
+```bash
+cd src/Commerce.React
+npm install
+npm run dev
+```
+
+In alternativa, puoi avviare tutti i frontend via Docker Compose.
 
 Update `src/Commerce.Api/appsettings.json` or set `ConnectionStrings__Default` for the local database.
 
