@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commerce.Api.Tests", "tests\Commerce.Api.Tests\Commerce.Api.Tests.csproj", "{C1101A68-D9B9-41A8-AA68-862DA8F8239E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commerce.Blazor", "src\Commerce.Blazor\Commerce.Blazor.csproj", "{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,18 @@ Global
 		{C1101A68-D9B9-41A8-AA68-862DA8F8239E}.Release|x64.Build.0 = Release|Any CPU
 		{C1101A68-D9B9-41A8-AA68-862DA8F8239E}.Release|x86.ActiveCfg = Release|Any CPU
 		{C1101A68-D9B9-41A8-AA68-862DA8F8239E}.Release|x86.Build.0 = Release|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Debug|x64.Build.0 = Debug|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Debug|x86.Build.0 = Debug|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Release|x64.ActiveCfg = Release|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Release|x64.Build.0 = Release|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Release|x86.ActiveCfg = Release|Any CPU
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +66,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FCEA9EFA-1828-433F-A385-207DCD4CA00B} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{C1101A68-D9B9-41A8-AA68-862DA8F8239E} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{E40B8A33-5B57-4FAE-9AA9-0A3339007D98} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal

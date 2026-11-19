@@ -1,0 +1,103 @@
+@page "/orders"
+@using Commerce.Blazor.Models
+@using Commerce.Blazor.Services
+@inject CommerceApiClient ApiClient
+
+<PageTitle>Orders</PageTitle>
+
+<h1>Orders</h1>
+
+@if (_loading)
+{
+    <p>Loading orders...</p>
+}
+else if (_error is not null)
+{
+    <div class="alert alert-danger">@_error</div>
+}
+else
+{
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in _orders)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.CustomerName</td>
+                    <td>@order.OrderDate.LocalDateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@order.Status</td>
+                    <td>@order.Total.ToString("0.00")</td>
+                    <td>@order.Items.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-outline-secondary btn-sm" @onclick="PreviousPage" disabled="@(_page <= 1)">Prev</button>
+        <span>Page @_page</span>
+        <button class="btn btn-outline-secondary btn-sm" @onclick="NextPage"
+                disabled="@((_page * _pageSize) >= _totalCount)">Next</button>
+        <span class="text-muted">Total @_totalCount</span>
+    </div>
+}
+
+@code {
+    private IReadOnlyList<OrderResponse> _orders = [];
+    private bool _loading = true;
+    private string? _error;
+    private int _page = 1;
+    private const int _pageSize = 10;
+    private int _totalCount;
+
+    protected override async Task OnInitializedAsync() => await LoadAsync();
+
+    private async Task PreviousPage()
+    {
+        if (_page > 1)
+        {
+            _page--;
+            await LoadAsync();
+        }
+    }
+
+    private async Task NextPage()
+    {
+        if ((_page * _pageSize) < _totalCount)
+        {
+            _page++;
+            await LoadAsync();
+        }
+    }
+
+    private async Task LoadAsync()
+    {
+        _loading = true;
+        _error = null;
+
+        try
+        {
+            var response = await ApiClient.GetOrdersAsync(_page, _pageSize, CancellationToken.None);
+            _orders = response.Items;
+            _totalCount = response.TotalCount;
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+}
