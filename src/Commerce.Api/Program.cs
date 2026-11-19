@@ -11,6 +11,15 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddOpenApi();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontends", policy =>
+    {
+        policy.WithOrigins("http://localhost:8081", "http://localhost:8082", "http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 // EF Core DbContext replaces the legacy data access setup and follows the Unit of Work pattern.
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -32,6 +41,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors("Frontends");
 app.MapControllers();
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
